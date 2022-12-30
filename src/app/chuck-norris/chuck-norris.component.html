@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row my-4">
+    <div class="col-12 text-center">
+      <h1>Check Norris jokes</h1>
+    </div>
+  </div>
+  <div class="row d-flex-center mb-4">
+    <div class="col-12 col-lg-6">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <button (click)="toggleSearchBy('category')" [ngClass]="{'active': searchByCategory}"
+                  class="nav-link active"
+                  aria-current="page">Category
+          </button>
+        </li>
+        <li class="nav-item">
+          <button (click)="toggleSearchBy('text')" [ngClass]="{'active': !searchByCategory}" class="nav-link">Free Text
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row d-flex-center mb-4">
+    <div class="col-6">
+      <form class="row" [formGroup]="jokesForm" (ngSubmit)="onSubmit()">
+        <div class="col-12 mb-3 mb-lg-0 col-lg-3 d-flex-align">
+          <label>{{searchByCategory ? 'Category' : 'Free Text'}} : </label>
+        </div>
+        <div class="col-12 mb-3 mb-lg-0 col-lg-6">
+          <app-select *ngIf="searchByCategory"
+                      [customFormControlName]="'category'"
+                      [items]="jokesCategories">
+          </app-select>
+          <app-input-text *ngIf="!searchByCategory"
+                          [customFormControlName]="'query'">
+          </app-input-text>
+        </div>
+        <div class="col-12 mb-3 mb-lg-0 col-lg-3">
+          <button [disabled]="isLoading || !jokesForm.valid" class="btn btn-primary w-100">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="jokes.length" class="row d-flex-center">
+    <div class="col-6">
+      <app-jokes
+        [totalJokes]="totalJokes"
+        [jokes]="jokes">
+      </app-jokes>
+    </div>
+  </div>
+  <div *ngIf="!jokes.length && totalJokes === 0" class="row d-flex-center">
+    <div class="col-6 text-center">
+      <p>No Search Results</p>
+    </div>
+  </div>
+</div>

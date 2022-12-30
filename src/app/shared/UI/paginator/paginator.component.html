@@ -1,0 +1,17 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <button [ngClass]="{'disabled': currentItem === 1}" [disabled]="currentItem === 1" (click)="onPaginateBack()"
+              class="page-link" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </button>
+    </li>
+    <span class="align-self-center mx-2">{{currentItem}} of {{totalItems}}</span>
+    <li class="page-item">
+      <button [ngClass]="{'disabled': currentItem === totalItems}" [disabled]="currentItem === totalItems"
+              (click)="onPaginateForward()" class="page-link" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </button>
+    </li>
+  </ul>
+</nav>

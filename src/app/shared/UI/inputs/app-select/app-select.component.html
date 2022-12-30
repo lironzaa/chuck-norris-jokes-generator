@@ -1,0 +1,4 @@
+<select class="form-select" formControlName="{{customFormControlName}}">
+  <option [ngValue]="null"></option>
+  <option *ngFor="let item of items" [ngValue]="item">{{item}}</option>
+</select>

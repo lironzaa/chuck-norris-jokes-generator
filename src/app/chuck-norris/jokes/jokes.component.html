@@ -1,0 +1,13 @@
+<div class="card mb-3">
+  <span class="card-header">{{jokes[jokeIndex].created_at | date:'yyyy/MM/dd HH:mm'}}</span>
+  <div class="card-body">
+    <p class="card-title fw-bold my-3">{{jokes[jokeIndex].value}}</p>
+    <span class="joke-page">Joke Page</span>
+  </div>
+</div>
+<app-paginator *ngIf="totalJokes > 1"
+               [currentItem]="jokeIndex+1"
+               [totalItems]="totalJokes"
+               (previousPage)="onPaginate($event)"
+               (nextPage)="onPaginate($event)">
+</app-paginator>
